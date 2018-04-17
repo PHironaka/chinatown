@@ -1,0 +1,47 @@
+/*================ General layout styles ================*/
+body,
+html {
+  background-color: $color-body;
+  cursor: url('https://cdn.shopify.com/s/files/1/2140/7529/files/middle-finger.png?8477439657080604170'), default;
+}
+
+a {
+  cursor: url('https://cdn.shopify.com/s/files/1/2140/7529/files/ctm-smile.svg?17026608095994548427'), default;
+}
+
+.page-width {
+  @include clearfix();
+  max-width: $width-site;
+  padding: 0 $gutter;
+  margin: 0 auto;
+}
+
+.container {
+	width: 90%;
+display: grid;
+margin: 0 auto;
+    margin-top: 0px;
+grid-column-gap: 2rem;
+    grid-row-gap: 2rem;
+grid-template-columns: repeat(auto-fit,minmax(200px,2fr));
+
+&.page {
+grid-template-columns: 1fr;
+  grid-column-gap: 2rem;
+    grid-row-gap: 0;
+}
+
+
+.collection-item p {
+  font-size:.8em;
+  text-transform:uppercase;
+  text-align:center;
+  margin:0;
+  line-height:1.4;
+}
+}
+
+.col-right {
+  
+  justify-self:right;
+}

@@ -1,0 +1,28 @@
+.pagination {
+	width:100%;
+	text-align: center;
+	margin: 2em 0;
+}
+
+footer {
+margin: 2em 0;
+	.container {
+grid-template-columns: 1fr 1fr;
+small {
+color: #666;
+	}
+ul {
+	    justify-self: right;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 0;
+    padding:0;
+
+    li {
+    margin: 0 1em;
+    }
+}
+
+}
+
+}

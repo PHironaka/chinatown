@@ -1,0 +1,106 @@
+/*================ Site Header ================*/
+
+.search-form {
+    display:none;
+    padding:4em 0;
+    background:yellow;
+
+    form {
+        max-width: 440px;
+    margin: 0 auto;
+
+    .btn {
+    background:transparent;
+    }
+
+    input {
+        min-width: 400px;
+        background:transparent;
+        border:0;
+        border-bottom: 1px solid #000;
+        outline:none;
+    }
+    }
+
+    .close-search {
+    position:absolute;
+    top: 10px;
+    right: 10px;
+    border: 0;
+    outline:none;
+    background:transparent;
+    }
+}
+
+.search-button {
+    border:0;
+    outline:none;
+  cursor: url('https://cdn.shopify.com/s/files/1/2140/7529/files/ctm-smile_1.svg?1734297959750535764'), default;
+}
+
+header {
+
+margin: 2em 0;
+
+	.container {
+	margin: 0 auto;
+    width: 90%;
+    display: grid;
+    grid-column-gap: 2rem;
+    margin: 0 auto;
+    grid-gap: 20px;
+    max-width: 68em;
+    grid-template-columns: 1fr 2fr 1fr ;
+    
+    .center-logo {
+    justify-self:center;
+
+    svg {
+        max-width: 150px;
+    margin: 0 auto 2em;
+    display: block;
+    }
+
+    ul {
+        display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr; 
+    padding: 0;
+    grid-gap: 15px;
+
+    }
+
+    ul.site-nav__submenu {
+    display:none;
+
+    }
+    }
+}
+
+.site-nav__submenu {
+    position: absolute;
+    top: 55px;
+    margin: 0;
+    left: 0;
+    padding: 20px 0;
+    display: none;
+    width: 100%;
+    background-color: #fff;
+    justify-content: center;
+    overflow-x: hidden;
+    z-index: 10;
+    text-align: left;
+    grid-template-columns: 100px 100px 100px 100px;
+
+    li {
+    display: block;
+    font-weight: bold;
+    margin: .5em 0px 1em;
+    font-size: 1.5em;
+}
+
+
+}
+
+
+
+}
