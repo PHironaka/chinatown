@@ -6,6 +6,7 @@
  */
 // =require vendor/modernizr.min.js
 // =require vendor/jquery-2.2.3.min.js
+// =require vendor/jquery.marquee.min.js
 
 
 // Attempts to preserve comments that likely contain licensing information,
@@ -153,6 +154,12 @@ function openSearch() {
   $('.search-form').slideDown(200);
 }   
 
+function aboutModal() {
+  $('.about-modal').toggle();
+}   
+
+
+
 function closeSearch() {
   $('.search-form').slideUp(200);
 } 
@@ -168,7 +175,46 @@ $('.search-button').click(function() {
        
  });
 
+$('.site-nav--about').click(function() {
+        aboutModal();
+       
+ });
 
+$('.collection-item').each(function(i) {
+    $(this).hide().delay(i * 400).fadeIn(200);
+});
+
+
+
+// $(document).ready(function(){
+
+//       var list = $(".collection-item");
+//       var numToShow = 12;
+//       var button = $("#next");
+//       var numInList = list.length;
+//       list.hide();
+//       if (numInList > numToShow) {
+//         button.show();
+//       }
+//       list.slice(0, numToShow).show();
+
+//       button.click(function(){
+//           var showing = list.filter(':visible').length;
+//           list.slice(showing - 1, showing + numToShow).fadeIn();
+//           var nowShowing = list.filter(':visible').length;
+//           if (nowShowing >= numInList) {
+//             button.hide();
+//           }
+//       });
+
+// });
+
+
+$(function () {
+    $('.marquee').marquee({
+        duration: 8000
+    });
+});
 
 $(document).ready(function() {
   if( typeof(productOptions ) != "undefined" ){
@@ -233,6 +279,8 @@ $('.video-container').on('click', function(){
     $(this).addClass('paused');
   }
 });
+
+
    
  
      jQuery('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantity input');

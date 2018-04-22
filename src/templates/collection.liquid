@@ -1,6 +1,5 @@
 <div class="container">
 
-{% paginate collection.products by 12 %}
 
 
     {% for product in collection.products %}
@@ -69,9 +68,8 @@
 
     {% endfor %}
 
+
   
   </div>
-{% if paginate.pages > 1 %}
-    {% include 'pagination' %}
-  {% endif %}
-{% endpaginate %}
+
+

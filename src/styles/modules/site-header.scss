@@ -1,4 +1,7 @@
 /*================ Site Header ================*/
+header li, footer li {
+  list-style:none;
+}
 
 .search-form {
     display:none;
@@ -19,12 +22,13 @@
         border:0;
         border-bottom: 1px solid #000;
         outline:none;
+        line-height:2;
     }
     }
 
     .close-search {
     position:absolute;
-    top: 10px;
+    top: 40px;
     right: 10px;
     border: 0;
     outline:none;
@@ -38,9 +42,25 @@
   cursor: url('https://cdn.shopify.com/s/files/1/2140/7529/files/ctm-smile_1.svg?1734297959750535764'), default;
 }
 
+.about-modal {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 20%;
+    left: 30%;
+    right: 0;
+    bottom: 0;
+    background-color: transparent; 
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+
+}
+
+
 header {
 
-margin: 2em 0;
+margin: 2.5em 0;
 
 	.container {
 	margin: 0 auto;
@@ -56,14 +76,14 @@ margin: 2em 0;
     justify-self:center;
 
     svg {
-        max-width: 150px;
+        max-width: 110px;
     margin: 0 auto 2em;
     display: block;
     }
 
     ul {
         display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr; 
+    grid-template-columns: 1fr 1fr 1fr ; 
     padding: 0;
     grid-gap: 15px;
 
@@ -72,13 +92,19 @@ margin: 2em 0;
     ul.site-nav__submenu {
     display:none;
 
+    .container {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-self:center;
+    text-align:center;
+    }
+
     }
     }
 }
 
 .site-nav__submenu {
     position: absolute;
-    top: 55px;
+    top: 255px;
     margin: 0;
     left: 0;
     padding: 20px 0;

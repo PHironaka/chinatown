@@ -5,6 +5,19 @@
     }
   {% endif %}
 </style>
+
+  <h2 class="marquee">
+         <span style="color:{% if section.settings.home-video-text-1 %} {{ section.settings.color-font-1 | escape }} {%endif%};"> {{ section.settings.home-video-text-1 | escape }}</span>
+         <span style="color:{% if section.settings.home-video-text-2 %} {{ section.settings.color-font-2 | escape }} {%endif%};">{{ section.settings.home-video-text-2 | escape }}</span>
+         <span style="color:{% if section.settings.home-video-text-3 %} {{ section.settings.color-font-3 | escape }} {%endif%};">{{ section.settings.home-video-text-3 | escape }}</span>
+         
+        </h2>
+
+
+<div class="about-modal">
+  <h2>Inspired by the spirit of Canal St.</h2> 
+  <img src="//cdn.shopify.com/s/files/1/1522/4434/files/nle-10197-rose-open-salon-hair-neon-sign_large.jpg?v=1478068685">
+</div>
 <div class="search-form">
    <form action="/search" method="get" role="search">
 
@@ -70,15 +83,18 @@
               {{ link.title }}
             </a>
             <ul class="site-nav__submenu">
+<div class="container">
+
               {% for childlink in menus[child_list_handle].links %}
                 <li {% if childlink.active %}class="site-nav--active"{% endif %}>
                   <a href="{{ childlink.url }}" class="site-nav__link">{{ childlink.title | escape }}</a>
                 </li>
               {% endfor %}
+              </div>
             </ul>
           </li>
         {% else %}
-          <li {% if link.active %}class="site-nav--active"{% endif %}>
+          <li {% if link.active %}class="site-nav--active" {% elsif link.title == 'About' %}class="site-nav--about"{% endif %}>
             <a href="{{ link.url }}" class="site-nav__link">{{ link.title }}</a>
           </li>
         {% endif %}
@@ -134,7 +150,52 @@
         "id": "main_linklist",
         "label": "Menu",
         "default": "main-menu"
+      },
+
+      {
+        "type": "text",
+        "id": "home-video-text-1",
+        "label": "Heading",
+        "default": "Welcome!"
+      },
+
+        {
+        "type": "text",
+        "id": "home-video-text-2",
+        "label": "Heading",
+        "default": "Welcome!"
+      },
+
+        {
+        "type": "text",
+        "id": "home-video-text-3",
+        "label": "Heading",
+        "default": "Welcome!"
+      },
+
+       
+
+      {
+        "type": "color",
+        "id": "color-font-1",
+        "label": "font color-1",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "color-font-2",
+        "label": "font color-2",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "color-font-3",
+        "label": "font color-3",
+        "default": "#fff"
       }
+
+   
+
     ]
   }
 {% endschema %}

@@ -4,13 +4,16 @@
   width: 20px;
   height: 20px;
   vertical-align: middle;
-  fill: currentColor;
 
   .no-svg & {
     display: none;
   }
 }
 
+.icon-cart {
+      fill: white;
+    stroke: black;
+}
 .icon--wide {
   width: 40px;
 }

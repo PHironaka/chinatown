@@ -62,12 +62,17 @@
 </head>
 
 <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}">
-
+ {% if template contains 'index' %}<div id="loading"></div> {% elsif template contains 'collection' %}<div id="loading"></div> {% endif %} 
 
   {% section 'header' %}
 
   <main role="main" id="MainContent">
+ {% if template contains 'index' %} <div class="container home">{% endif %}
+
     {{ content_for_layout }}
+ {% if template contains 'index' %}</div>  {% endif %}
+
+  </div>
   </main>
 
   {% section 'footer' %}

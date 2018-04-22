@@ -32,11 +32,14 @@ select {
   -webkit-text-size-adjust: 100%;
 }
 
-
-
-li {
-  list-style:none;
+ul {
+  padding:0;
 }
+button, input, select {
+  outline:none;
+}
+
+
 
 a {
   text-decoration:none;
