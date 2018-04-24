@@ -82,7 +82,7 @@ $(document).ready(function() {
 
 
 $('.site-nav--has-submenu-mobile').click(function() {
-    $(this).find('.site-nav__submenu-mobile').fadeIn(200);
+    $(this).find('.site-nav__submenu-mobile').fadeIn(500);
   }, function() {
     $(this).find('.site-nav__submenu-mobile').slideUp(200);
   });
@@ -91,14 +91,15 @@ function show(id, value) {
     document.getElementById(id).style.display = value ? 'block' : 'none';
 }
 
-$('.site-nav--has-submenu').hover(function() {
-    $(this).find('.site-nav__submenu').stop(true, true).delay(100).slideDown(200);
-  }, function() {
-    $(this).find('.site-nav__submenu').stop(true, true).delay(100).slideUp(200);
-  });
+// $('.site-nav--has-submenu').hover(function() {
+//     $(this).find('.site-nav__submenu').stop(true, true).delay(100).slideDown(200);
+//   }, function() {
+//     $(this).find('.site-nav__submenu').stop(true, true).delay(100).slideUp(200);
+//   });
 
 $('.mobile-menu').click(function(e) {
-      $('.modal-box.mobile').addClass('open');
+      $('.modal-box.mobile').toggleClass('open');
+      $('.site-nav').hide().fadeIn(300);
       $('body').addClass('modal');
       e.preventDefault();
     });
@@ -112,6 +113,7 @@ $('.mobile-menu').click(function(e) {
 function closeModal() {
         $('.product-modal').removeClass('open');
         $('.modal-box').removeClass('open');
+
         $('body').removeClass('modal');
     }
   
@@ -138,6 +140,25 @@ function onReady(callback) {
 }
 
 
+//Check the scroll position
+$(window).scroll(function(){
+  if ($(this).scrollTop() > 500) {
+    event.preventDefault();
+    $(".scrollToTop").css({'transform': 'translate(0px, 0px)'});
+  } else {
+    $(".scrollToTop").css({'transform': 'translate(80px, 0px)'});
+  }
+});
+
+
+//Click and scrolls top effect
+$('.scrollToTop').click(function(){
+  $('html, body').animate({scrollTop : 0},800);
+  return false;
+  });
+
+
+
 
 onReady(function () {
     show('page', true);
@@ -151,7 +172,7 @@ $(document).ready(function() {
 });
 
 function openSearch() {
-  $('.search-form').slideDown(200);
+  $('.search-form').toggle(200);
 }   
 
 function aboutModal() {

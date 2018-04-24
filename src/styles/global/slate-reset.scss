@@ -34,6 +34,10 @@ select {
 
 ul {
   padding:0;
+  margin:0;
+  li {
+  list-style:none;
+  }
 }
 button, input, select {
   outline:none;

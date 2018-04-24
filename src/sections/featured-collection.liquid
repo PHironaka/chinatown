@@ -1,18 +1,44 @@
 
-
+<div class="container ">
 {%- assign collection = collections[section.settings.collection] -%}
 
-<div>
-  <a href="{{ collection.url  }}">
+{% for product in collection.products limit: 8 %}
+<div class="home-products ">
 
-      {{ collection.image.src | img_url: '480x480' | img_tag: product.title }}
+  <a href="{{ product.url | within: collection }}">
 
-    <p>{{ collection.title }}</p>
+    {% if product.featured_image != blank %}
+      {{ product.featured_image.src | img_url: '480x480' | img_tag: product.title }}
+    {% endif %}
+
+    <p>{{ product.title }}</p>
   </a>
 
+  <p>
+    {% if product.compare_at_price > product.price %}
 
+      {% if product.price_varies %}
+        {%- assign sale_price = product.price | money -%}
+        {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
+      {% else %}
+        {{ 'products.product.on_sale' | t }}
+        {{ product.price | money }}
+      {% endif %}
 
+    {% else %}
+
+      {% if product.price_varies %}
+        {%- assign price = product.price | money -%}
+        {{ 'products.product.from_text_html' | t: price: price }}
+      {% else %}
+        {{ product.price | money }}
+      {% endif %}
+
+    {% endif %}
+  </p>
 </div>
+
+{% endfor %}
 {% schema %}
   {
     "name": "Featured collection",
@@ -38,5 +64,3 @@
   }
 
 {% endschema %}
-
-

@@ -35,46 +35,21 @@
           <button class="close-search"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>  </button>
 
 </div>
-<div data-section-id="{{ section.id }}" data-section-type="header-section">
-  <header role="banner">
-<div class="container">
-   
 
+<div class="modal-box mobile">
+        <a href="#" class="close">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
 
-    {% if shop.customer_accounts_enabled %}
-      <ul>
-        {% if customer %}
-          <li>
-            {% if customer.first_name != blank %}
-              {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
-              {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}
-            {% else %}
-              <a href="/account">{{ 'layout.customer.account' | t }}</a>
-            {% endif %}
-          </li>
-          <li>
-            {{ 'layout.customer.log_out' | t | customer_logout_link }}
-          </li>
-        {% else %}
-          <li>
-            {{ 'layout.customer.log_in' | t | customer_login_link }}
-          </li>
-          <li>
-            {{ 'layout.customer.create_account' | t | customer_register_link }}
-          </li>
-        {% endif %}
-      </ul>
-    {% endif %}
-    
+        </a>
+      <div class="menu">
 
-    <div class="center-logo">
-<a href="/">
-     
-          {% include  'chinatown-logo' %}
-     
-</a>
-        <nav role="navigation">
+   <nav role="navigation">
     <ul class="site-nav">
+
+<div class="container home">
+          {% include  'chinatown-flat' %}
+
+
       {% for link in linklists[section.settings.main_linklist].links %}
         {%- assign child_list_handle = link.title | handleize -%}
         {% if menus[child_list_handle].links != blank %}
@@ -99,21 +74,49 @@
           </li>
         {% endif %}
       {% endfor %}
+      </div>
     </ul>
   </nav>
+      </div>
+      <div class="overlay"></div>
+   </div>  
+
+<div data-section-id="{{ section.id }}" data-section-type="header-section">
+  <header role="banner">
+<div class="container">
+   
+     <div class="mobile-nav--button">
+        <a href="#" class="mobile-menu">
+<svg xmlns="http://www.w3.org/2000/svg" width="38" height="24" viewBox="0 0 34 17" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="27" y2="6"></line><line x1="3" y1="18" x2="27" y2="18"></line></svg>
+        </a>
+
+
+
+
+
+</div>  
+    
+    
+    <div class="center-logo">
+
+<a href="/">
+     
+          {% include  'chinatown-logo' %}
+     
+</a>
+
 
    
       </div>
 
 <div class="col-right">
 <button type="submit" class="search-button">
-      {% include 'icon-search' %}
+      search
       
   </button>
 
 <a href="/cart">
-      {% include 'icon-cart' %}
-      ({{ cart.item_count }} )
+      cart
     </a>
 
  
@@ -121,6 +124,10 @@
 
   
   </div>
+
+
+
+
 
   </header>
 

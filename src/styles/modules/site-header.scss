@@ -74,7 +74,8 @@ margin: 2.5em 0;
     
     .center-logo {
     justify-self:center;
-
+        padding: 10px;
+        width:100%;
     svg {
         max-width: 110px;
     margin: 0 auto 2em;
@@ -127,6 +128,61 @@ margin: 2.5em 0;
 
 }
 
+.col-right {
+  margin-top:2em;
+  justify-self:right;
+}
+
+.mobile-nav--button {
+  margin-top:2em;
+    
+}
 
 
 }
+
+
+
+
+.modal-box.mobile {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    overflow-y: auto;
+
+ .overlay {
+    background: rgba(255,255,255,1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+    }
+}
+
+.modal-box.open {
+    display:block;
+
+    .menu ul {
+    margin:8em 0 0;
+    padding:0;
+    li {
+    text-align:center;
+    font-size:1.5em;
+    margin:1em 0;
+    font-weight:bold;
+    }
+    }
+    }
+
+    .modal-box .close {
+    position: fixed;
+    top: 2em;
+    left: 4em;
+    }
+

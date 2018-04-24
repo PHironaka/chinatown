@@ -15,18 +15,13 @@
   {% endif %}
 
   {% if product.images.size > 1 %}
-    <ul>
       {% for image in product.images %}
-        <li>
-          <a href="{{ image.src | img_url: '480x480' }}" data-product-single-thumbnail>
-            <img src="{{ image.src | img_url: '160x160' }}" alt="{{ image.alt | escape }}">
-          </a>
-        </li>
+            <img src="{{ image.src | img_url: '480x480' }}" alt="{{ image.alt | escape }}">
       {% endfor %}
     </ul>
   {% endif %}
   </div>
-  <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+  <div class="product-info" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
 
   <h2>{{ product.title }}</h2>
 
@@ -34,13 +29,32 @@
     <meta itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
     <link itemprop="availability" href="http://schema.org/{% if current_variant.available %}InStock{% else %}OutOfStock{% endif %}">
 
-    <form action="/cart/add" method="post" enctype="multipart/form-data">
+    <form class="product-info" action="/cart/add" method="post" enctype="multipart/form-data">
       {% unless product.has_only_default_variant %}
         {% for option in product.options_with_values %}
+
+
+      <div data-price-wrapper>
+        <span data-product-price>
+          {{ current_variant.price | money }}
+        </span>
+
+        {% if product.compare_at_price_max > product.price %}
+          <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
+          <s data-compare-price>
+            {% if current_variant.compare_at_price > current_variant.price %}
+              {{ current_variant.compare_at_price | money }}
+            {% endif %}
+          </s>
+        {% endif %}
+      </div>
           <div class="selector-wrapper js">
             <label for="SingleOptionSelector-{{ forloop.index0 }}">
               {{ option.name }}
             </label>
+
+
+
 
             <select
               id="SingleOptionSelector-{{ forloop.index0 }}"
@@ -58,6 +72,7 @@
         {% endfor %}
       {% endunless %}
 
+
       <select name="id" class="no-js" data-product-select>
         {% for variant in product.variants %}
           <option
@@ -69,23 +84,6 @@
         {% endfor %}
       </select>
 
-      <label for="Quantity">{{ 'products.product.quantity' | t }}</label>
-      <input type="number" id="Quantity" name="quantity" value="1" min="1">
-
-      <div data-price-wrapper>
-        <span data-product-price>
-          {{ current_variant.price | money }}
-        </span>
-
-        {% if product.compare_at_price_max > product.price %}
-          <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
-          <s data-compare-price>
-            {% if current_variant.compare_at_price > current_variant.price %}
-              {{ current_variant.compare_at_price | money }}
-            {% endif %}
-          </s>
-        {% endif %}
-      </div>
 
       <button
         type="submit"
@@ -101,7 +99,7 @@
           </span>
       </button>
     </form>
-<div class="rte">
+<div class="product-description">
     {{ product.description }}
   </div>
   {% if section.settings.show_share_buttons %}
@@ -115,10 +113,13 @@
   {% endunless %}
   </div>
 
-  
-
+<div class="related-products-list">
+{% include 'related-products' %}
+</div>
   
 </div>
+  
+
 </div>
 
 {% schema %}
