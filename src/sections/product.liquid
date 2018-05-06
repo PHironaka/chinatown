@@ -10,16 +10,18 @@
   <meta itemprop="description" content="{{ product.description | strip_html | escape }}">
 
 <div class="images">
-  {% if featured_image != blank %}
-    <img src="{{ featured_image | img_url: '480x480' }}" alt="{{ featured_image.alt | escape }}" data-product-featured-image>
-  {% endif %}
 
-  {% if product.images.size > 1 %}
-      {% for image in product.images %}
-            <img src="{{ image.src | img_url: '480x480' }}" alt="{{ image.alt | escape }}">
-      {% endfor %}
-    </ul>
-  {% endif %}
+ <div class="product-single__photo-wrapper">
+          <img class="product-single__photo image-zoom" id="ProductPhotoImg" src="{{ featured_image | img_url: 'grande' }}" {% if settings.product_zoom_enable %}data-mfp-src="{{ featured_image | img_url: '480x480' }}" data-mfp-src="{{ image.src | img_url: 'grande' }}"{% endif %} alt="{{ featured_image.alt | escape }}">
+        </div>
+
+ {% for image in product.images %}
+          {% unless image contains featured_image %}
+            <div class="product-single__photo-wrapper">
+              <img class="product-single__photo" src="{{ image.src | img_url: '1024x1024' }}" {% if settings.product_zoom_enable %} {% endif %} alt="{{ image.alt | escape }}" >
+            </div>
+          {% endunless %}
+        {% endfor %}
   </div>
   <div class="product-info" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
 
@@ -85,18 +87,16 @@
       </select>
 
 
-      <button
+      <button class="cart"
         type="submit"
         name="add"
         data-add-to-cart
         {% unless current_variant.available %}  disabled="disabled" class="sold-out"{% endunless %}>
-          <span data-add-to-cart-text>
             {% if current_variant.available %}
               {{ 'products.product.add_to_cart' | t }}
             {% else %}
               {{ 'products.product.sold_out' | t }}
             {% endif %}
-          </span>
       </button>
     </form>
 <div class="product-description">
@@ -113,9 +113,8 @@
   {% endunless %}
   </div>
 
-<div class="related-products-list">
 {% include 'related-products' %}
-</div>
+
   
 </div>
   

@@ -1,18 +1,6 @@
 {% paginate search.results by 10 %}
 
-  <h1>
-    {% if search.performed %}
-      {% if search.results_count == 0 %}
-        {{ 'general.search.no_results_html' | t: terms: search.terms }}
-      {% else %}
-        {{ 'general.search.results_for_html' | t: terms: search.terms }}
-      {% endif %}
-    {% else %}
-      {{ 'general.search.title' | t }}
-    {% endif %}
-  </h1>
-
-  <form action="/search" method="get" role="search">
+  <form action="/search" method="get" class="search-page" role="search">
     <label for="Search" class="label-hidden">
       {{ 'general.search.placeholder' | t }}
     </label>
@@ -22,7 +10,7 @@
            value="{{ search.terms | escape }}"
            placeholder="{{ 'general.search.placeholder' | t }}">
     <button type="submit" class="btn">
-      {% include 'icon-search' %}
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
       <span class="icon-fallback-text">{{ 'general.search.submit' | t }}</span>
     </button>
   </form>
@@ -30,6 +18,8 @@
 
 {% if search.performed %}
     <ul>
+    <div class="container">
+
       {% for item in search.results %}
         <li>
           {% assign featured_image = item.image | default: item.featured_image %}
@@ -70,8 +60,11 @@
           {% endif %}
 
         </li>
+
       {% endfor %}
+         </div>
     </ul>
+
 
     {% if paginate.pages > 1 %}
       {% include 'pagination' %}

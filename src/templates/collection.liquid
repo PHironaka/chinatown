@@ -9,7 +9,11 @@
    <div class="reveal">
   <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ featured.featured_image.alt | escape }}">
 
+ {% if product.images[1] != blank %}
+
   <img class="hidden" src="{{ product.images[1] | img_url: 'master' }}" alt="{{ product.images.last.alt | escape }}" />
+  
+        {% endif %}
 
 </div>
 

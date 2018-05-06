@@ -3,11 +3,17 @@ header li, footer li {
   list-style:none;
 }
 
+header {
+    z-index:10;
+    position:relative;
+}
+
 .search-form {
     display:none;
     padding:4em 0;
     background:yellow;
-
+        z-index: 1;
+    position: relative;
     form {
         max-width: 440px;
     margin: 0 auto;
@@ -40,6 +46,13 @@ header li, footer li {
     border:0;
     outline:none;
   cursor: url('https://cdn.shopify.com/s/files/1/2140/7529/files/ctm-smile_1.svg?1734297959750535764'), default;
+  background:transparent;
+   @media screen and (max-width: 800px) {
+display:none;
+
+   
+    
+}
 }
 
 .about-modal {
@@ -133,6 +146,9 @@ margin: 2.5em 0;
   justify-self:right;
 }
 
+
+
+
 .mobile-nav--button {
   margin-top:2em;
     
@@ -144,25 +160,43 @@ margin: 2.5em 0;
 
 
 
-.modal-box.mobile {
-    display: none;
-    position: fixed;
-    top: 0;
+.modal-box.mobile.active {
     left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 9999;
-    overflow-y: auto;
 
- .overlay {
-    background: rgba(255,255,255,1);
+    border: 1px solid;
+}
+
+
+.modal-box.mobile {
+    -webkit-transition: 0.1s;
+    -moz-transition: 0.1s;
+    -o-transition: 0.1s;
+    transition: 0.1s;
+    transition: all 0.1s ease-in-out;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
     position: fixed;
+    z-index: 9999;
     top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: -1;
+        left: -350px;
+    background:white;
+    height: 100%;
+    width: 350px;
+
+    .menu {
+        width: 100%;
+    height: 100%;
+    padding: 31px;
+
+    li {
+    margin: 2em 0;
     }
+
+    }
+
+ 
 }
 
 .modal-box.open {
@@ -180,9 +214,12 @@ margin: 2.5em 0;
     }
     }
 
-    .modal-box .close {
-    position: fixed;
-    top: 2em;
-    left: 4em;
-    }
-
+.close.active {
+    position: absolute;
+    right: 30px;
+    top: 22px;
+}
+    
+.site-nav {
+    margin-top:3em;
+}
