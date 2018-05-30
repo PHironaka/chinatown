@@ -5,6 +5,8 @@
     "@shopify/slate-tools": "0.13.0"
   },
   "dependencies": {
-    "@odopod/odo-carousel": "^2.1.0"
+    "@odopod/odo-carousel": "^2.1.0",
+    "gsap": "^2.0.0",
+    "sticky-sidebar": "^3.3.1"
   }
 }

@@ -14,7 +14,16 @@
   <img class="hidden" src="{{ product.images[1] | img_url: 'master' }}" alt="{{ product.images.last.alt | escape }}" />
   
         {% endif %}
-
+  {% if sold_out %}
+        <div class="grid-product__sold-out">
+        <img src="https://cdn.shopify.com/s/files/1/2140/7529/files/sold_6e1ca257-37c6-4227-b8a7-bd199fbe6a19.svg?928022969887415564">
+        </div>
+      {% elsif on_sale %}
+        <div class="grid-product__on-sale">        
+        <img src="https://cdn.shopify.com/s/files/1/2140/7529/files/sale_3624219e-f2b8-442d-bb34-57f6801455fb.svg?12766629816306808856">
+          
+        </div>
+      {% endif %}
 </div>
 
           </a>

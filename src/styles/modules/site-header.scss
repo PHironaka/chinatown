@@ -73,7 +73,13 @@ display:none;
 
 header {
 
-margin: 2.5em 0;
+margin: 2.5em 0 .5em;
+
+
+       @media screen and (max-width: 800px) {
+  margin: 2.5em 0 0;
+   
+}
 
 	.container {
 	margin: 0 auto;
@@ -184,6 +190,12 @@ margin: 2.5em 0;
     background:white;
     height: 100%;
     width: 350px;
+
+    @media screen and (max-width: 600px) {
+overflow-y:scroll;
+   
+    
+}
 
     .menu {
         width: 100%;

@@ -80,8 +80,13 @@
  {% endif %}
   </div>
   </main>
+{% if template contains 'index' %}
 
+
+{% else %}
   {% section 'footer' %}
+ {% endif %}
+
 
 </body>
 </html>

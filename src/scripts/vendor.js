@@ -7,6 +7,8 @@
 // =require vendor/modernizr.min.js
 // =require vendor/jquery-2.2.3.min.js
 // =require vendor/jquery.marquee.min.js
+// =require vendor/TweenMax.min.js
+
 
 // Attempts to preserve comments that likely contain licensing information,
 // even if the comment does not have directives such as `@license` or `/*!`.
@@ -41,6 +43,7 @@ window.theme = window.theme || {};
 // =require templates/customers-addresses.js
 // =require templates/customers-login.js
 //= require turbolinks
+// =require vendor/sticky-sidebar.js
 
 
 
@@ -144,6 +147,51 @@ function onReady(callback) {
 }
 
 
+$(window).scroll(function() {    
+    var scroll = $(window).scrollTop();
+
+     //>=, not <=
+    if (scroll >= 500) {
+        $(".sidebar").removeClass('fixed-cart').addClass('relative-cart');
+
+    }  else {
+        $(".sidebar").removeClass("relative-cart").addClass('fixed-cart');
+    }
+}); //missing );
+
+
+// function(t) {
+//  if (this.state.fixed)
+//        f (t.visible) {
+//            this.state.unhooked = !0, this.buyEl.classList.remove("md-psf"), this.buyEl.classList.add("md-psa");
+//            var e = t.el.offsetTop - this.buyEl.clientHeight;
+//        } else this.state.unhooked = !1, this.buyEl.classList.add("md-psf"), this.buyEl.classList.remove("md-psa"), this.buyEl.style.top = ""
+//   }
+
+
+function curvedText(time) {
+  var tl   = new TimelineMax({ repeat: -1 });
+  var text = document.querySelector('.text-animate');
+
+  var from = {
+    transformOrigin: 'center center',
+    rotation: 0
+  };
+
+  var to = {
+    rotation: 360,
+    ease: Linear.easeInOut
+  };
+
+  tl.fromTo([text], time, from, to);
+
+  return tl;
+}
+
+curvedText(12);
+
+
+
 //Check the scroll position
 $(window).scroll(function(){
   if ($(this).scrollTop() > 500) {
@@ -169,7 +217,20 @@ $(window).load(function(){
 });
 
 
+function sayThatWasEasy() {
+    var thatWasEasy = new Audio("https://cdn.shopify.com/s/files/1/2140/7529/files/21986721_male-voice-yeah-2_by_applehillstudios_preview.mp3?8119645457374810690");
+    thatWasEasy.play();
+}
 
+$("#easy").on("click", sayThatWasEasy);
+
+$(document).keypress(delegateKeypress);
+
+function delegateKeypress(event) {
+    if (event.keyCode == 32) {
+        $("#easy").trigger("click");
+    }
+}
 
 
 function openSearch() {

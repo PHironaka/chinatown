@@ -7,9 +7,18 @@
 
   <a href="{{ product.url | within: collection }}">
 
-    {% if product.featured_image != blank %}
-      {{ product.featured_image.src | img_url: '480x480' | img_tag: product.title }}
-    {% endif %}
+
+ 
+   <div class="reveal">
+  <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ featured.featured_image.alt | escape }}">
+
+ {% if product.images[1] != blank %}
+
+  <img class="hidden" src="{{ product.images[1] | img_url: 'master' }}" alt="{{ product.images.last.alt | escape }}" />
+  
+        {% endif %}
+
+</div>
 
     <p>{{ product.title }}</p>
   </a>

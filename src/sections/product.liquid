@@ -9,20 +9,7 @@
   <meta itemprop="image" content="{{ featured_image | img_url: '600x600' }}">
   <meta itemprop="description" content="{{ product.description | strip_html | escape }}">
 
-<div class="images">
 
- <div class="product-single__photo-wrapper">
-          <img class="product-single__photo image-zoom" id="ProductPhotoImg" src="{{ featured_image | img_url: 'grande' }}" {% if settings.product_zoom_enable %}data-mfp-src="{{ featured_image | img_url: '480x480' }}" data-mfp-src="{{ image.src | img_url: 'grande' }}"{% endif %} alt="{{ featured_image.alt | escape }}">
-        </div>
-
- {% for image in product.images %}
-          {% unless image contains featured_image %}
-            <div class="product-single__photo-wrapper">
-              <img class="product-single__photo" src="{{ image.src | img_url: '1024x1024' }}" {% if settings.product_zoom_enable %} {% endif %} alt="{{ image.alt | escape }}" >
-            </div>
-          {% endunless %}
-        {% endfor %}
-  </div>
   <div class="product-info" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
 
   <h2>{{ product.title }}</h2>
@@ -31,10 +18,10 @@
     <meta itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
     <link itemprop="availability" href="http://schema.org/{% if current_variant.available %}InStock{% else %}OutOfStock{% endif %}">
 
-    <form class="product-info" action="/cart/add" method="post" enctype="multipart/form-data">
+    <form class="sidebar fixed-cart"action="/cart/add" method="post" enctype="multipart/form-data">
       {% unless product.has_only_default_variant %}
         {% for option in product.options_with_values %}
-
+<div class="sidebar__innner">
 
       <div data-price-wrapper>
         <span data-product-price>
@@ -87,7 +74,7 @@
       </select>
 
 
-      <button class="cart"
+      <button id="easy" class="cart"
         type="submit"
         name="add"
         data-add-to-cart
@@ -98,13 +85,18 @@
               {{ 'products.product.sold_out' | t }}
             {% endif %}
       </button>
+      </div>
     </form>
 <div class="product-description">
     {{ product.description }}
   </div>
+
+  {% comment %}
   {% if section.settings.show_share_buttons %}
     {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
   {% endif %}
+  {% endcomment %}
+
 
   {% unless product == empty %}
     <script type="application/json" data-product-json>
@@ -113,6 +105,20 @@
   {% endunless %}
   </div>
 
+<div class="images">
+
+ <div class="product-single__photo-wrapper">
+          <img class="product-single__photo image-zoom" id="ProductPhotoImg" src="{{ featured_image | img_url: 'grande' }}" {% if settings.product_zoom_enable %}data-mfp-src="{{ featured_image | img_url: '480x480' }}" data-mfp-src="{{ image.src | img_url: 'grande' }}"{% endif %} alt="{{ featured_image.alt | escape }}">
+        </div>
+
+ {% for image in product.images %}
+          {% unless image contains featured_image %}
+            <div class="product-single__photo-wrapper">
+              <img class="product-single__photo" src="{{ image.src | img_url: '1024x1024' }}" {% if settings.product_zoom_enable %} {% endif %} alt="{{ image.alt | escape }}" >
+            </div>
+          {% endunless %}
+        {% endfor %}
+  </div>
 {% include 'related-products' %}
 
   
