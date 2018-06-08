@@ -1,16 +1,17 @@
-{% if cart.item_count > 0 %}
-    <div class="container">
+<div class="container">
 
-    <div class="cart-page">
-      <div class="cart-page--headline">
+{% if cart.item_count > 0 %}
+
+<div class="cart-page">
+
+  <form action="/cart" method="post" novalidate>
+     <div class="cart-page--headline">
           <ul>
           <li>{{ 'cart.label.product' | t }}</li>
-          <li>{{ 'cart.label.price' | t }}</li>
           <li>{{ 'cart.label.quantity' | t }}</li>
           <li>{{ 'cart.label.total' | t }}</li>
           </ul>
       </div>
-
       <div class="cart-page--items">
             {% for item in cart.items %}
 
@@ -54,28 +55,23 @@
              
 
               <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">
-                <small>x{{ 'cart.general.remove' | t }}</small>
+                <small>{{ 'cart.general.remove' | t }}</small>
               </a>
             </div>
             
-            <div data-label="{{ 'cart.label.price' | t }}">
-              {% if item.original_line_price != item.line_price %}
-                <span class="visually-hidden">{{ 'cart.label.discounted_price' | t }}</span>
-                {{ item.price | money }}
-                <span class="visually-hidden">{{ 'cart.label.original_price' | t }}</span>
-                <s>{{ item.original_price | money }}</s>
-              {% else %}
-                {{ item.price | money }}
-              {% endif %}
-            </div>
-            <div data-label="{{ 'cart.label.quantity' | t }}">
+         
+            <td data-label="{{ 'cart.label.quantity' | t }}">
+            <div class="quantity">
+
+
               <input type="number"
                      name="updates[]"
                      id="updates_{{ item.key }}"
                      value="{{ item.quantity }}"
-                     min="0"
                      aria-label="{{ 'cart.general.item_quantity' | t }}">
-            </div>
+                  </div>   
+            </td>
+           
             <div data-label="{{ 'cart.label.total' | t }}">
               {{ item.line_price | money }}
             </div>
@@ -83,25 +79,23 @@
         {% endfor %}
       </div>
 
-
-
-  <form class="checkout" action="/cart" method="post" novalidate>
-    
-
-
-
+<div class="cart-totals">
     <p>{{ 'cart.general.subtotal' | t }}</p>
     <p>{{ cart.total_price | money }}</p>
     {% if cart.total_discounts > 0 %}
       <p>{{ 'cart.general.savings' | t }} {{ cart.total_discounts | money }}</p>
     {% endif %}
-    <input type="submit" name="update" class="cart" value="{{ 'cart.general.update' | t }}">
-    <input type="submit" name="checkout" class="cart" value="{{ 'cart.general.checkout' | t }}">
+    <p>{{ 'cart.general.shipping_at_checkout' | t }}</p>
+    <input class="cart" type="submit" name="update" value="{{ 'cart.general.update' | t }}">
+    <input class="cart" type="submit" name="checkout" value="{{ 'cart.general.checkout' | t }}">
+    </div>
   </form>
+  </div>
 {% else %}
+<div class="cart-page">
+
   <h1>{{ 'cart.general.title' | t }}</h1>
 
-</div>
   {% comment %}
   Cart empty state
   {% endcomment %}
@@ -120,3 +114,6 @@
     <p>{{ 'cart.general.cookies_required' | t }}</p>
   </div>
 {% endif %}
+
+</div>
+</div>

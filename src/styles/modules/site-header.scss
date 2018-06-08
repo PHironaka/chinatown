@@ -45,7 +45,7 @@ header {
 .search-button {
     border:0;
     outline:none;
-  cursor: url('https://cdn.shopify.com/s/files/1/2140/7529/files/ctm-smile_1.svg?1734297959750535764'), default;
+
   background:transparent;
    @media screen and (max-width: 800px) {
 display:none;
@@ -157,6 +157,11 @@ margin: 2.5em 0 .5em;
 
 .mobile-nav--button {
   margin-top:2em;
+
+  button {
+  background:transparent;
+  border:none;
+  }
     
 }
 
@@ -190,12 +195,19 @@ margin: 2.5em 0 .5em;
     background:white;
     height: 100%;
     width: 350px;
-
-    @media screen and (max-width: 600px) {
 overflow-y:scroll;
-   
-    
+
+button {
+    background:transparent;
+    border:none;
+
+     position: absolute;
+    right: 30px;
+    top: 22px;
 }
+
+
+
 
     .menu {
         width: 100%;
@@ -204,6 +216,42 @@ overflow-y:scroll;
 
     li {
     margin: 2em 0;
+        display: block;
+
+
+    a {
+        display: inline;
+    padding: 10px 0;
+    position: relative;
+   transition: .3s; 
+
+&:after {
+    position: absolute;
+    transition: .3s;
+    content: '';
+    width: 0;
+    left: 50%;
+    bottom: 0;
+    height: 1px;
+    background: #333;
+  }
+  &:nth-of-type(2):after {
+    left: 0;
+  }
+  &:nth-of-type(3):after {
+    right: 0;
+    left: auto;
+  }
+
+    &:hover {
+    &:after {
+      width: 100%;
+      left: 0;
+    }}
+    
+  
+    
+    }
     }
 
     }
@@ -234,4 +282,95 @@ overflow-y:scroll;
     
 .site-nav {
     margin-top:3em;
+
+    &::after{
+    
+        clear: both;
+    content: "";
+    display: block;
+    }
 }
+
+.cart-link__bubble{
+    display: none;
+    }
+
+    .cart-link__bubble--visible {
+    display: block;
+    position: absolute;
+    top: -18px;
+    right: -2px;
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+}
+ 
+.cart-link__bubble--visible {
+    background-color: yellow;
+    width: 15px;
+    height: 15px;
+    padding-top: 1px;
+    margin: 0;
+    font-size:12px;
+    text-align:center;
+}
+
+
+.cart-link {
+    position:relative;
+}
+
+/* Make clicks pass-through */
+#nprogress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+  background: #000000;
+
+  position: fixed;
+  z-index: 1031;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 2px;
+}
+
+/* Fancy blur effect */
+#nprogress .peg {
+  display: block;
+  position: absolute;
+  right: 0px;
+  width: 100px;
+  height: 100%;
+  box-shadow: 0 0 10px #29d, 0 0 5px #29d;
+  opacity: 1.0;
+
+  -webkit-transform: rotate(3deg) translate(0px, -4px);
+      -ms-transform: rotate(3deg) translate(0px, -4px);
+          transform: rotate(3deg) translate(0px, -4px);
+}
+
+
+
+.nprogress-custom-parent {
+  overflow: hidden;
+  position: relative;
+}
+
+.nprogress-custom-parent #nprogress .spinner,
+.nprogress-custom-parent #nprogress .bar {
+  position: absolute;
+}
+
+@-webkit-keyframes nprogress-spinner {
+  0%   { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes nprogress-spinner {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+

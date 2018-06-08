@@ -37,10 +37,10 @@
 </div>
 
 <div class="modal-box mobile">
-        <a href="#" class="close">
+        <button href="#" class="close">
 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
 
-        </a>
+        </button>
       <div class="menu">
 
    <nav role="navigation">
@@ -86,9 +86,9 @@
 <div class="container">
    
      <div class="mobile-nav--button">
-        <a href="#" class="mobile-menu">
+        <button  class="mobile-menu">
 <svg xmlns="http://www.w3.org/2000/svg" width="38" height="24" viewBox="0 0 34 17" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="27" y2="6"></line><line x1="3" y1="18" x2="27" y2="18"></line></svg>
-        </a>
+        </button>
 
 
 
@@ -115,7 +115,7 @@
       
   </button>
 
-<a href="/cart">
+<a href="/cart" class="cart-link">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart">
        <style>
     .small { font-size:  11px ;
@@ -137,8 +137,11 @@
 <text x="20" y="15" class="small">{{ cart.item_count }}</text>
       {% endcomment %}
       </svg>
+        <span class="cart-link__bubble{% if cart.item_count > 0 %} cart-link__bubble--visible{% endif %}"> {{ cart.item_count }}</span>
+
     </a>
-      <span class="cart-totals"> -- {{ cart.item_count }}</span>
+
+  
 
  
   </div>
