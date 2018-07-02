@@ -1,5 +1,5 @@
 
-<div class="container ">
+<div class="container home">
 {%- assign collection = collections[section.settings.collection] -%}
 
 {% for product in collection.products limit: 8 %}
@@ -19,6 +19,8 @@
         {% endif %}
 
 </div>
+
+<div class="product-copy">
 
     <p>{{ product.title }}</p>
   </a>
@@ -45,6 +47,8 @@
 
     {% endif %}
   </p>
+
+  </div>
 </div>
 
 {% endfor %}
